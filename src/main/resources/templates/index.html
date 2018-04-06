@@ -1,0 +1,32 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>URL Shortener</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+<p>Enter URL for shortening</p>
+<form id="urlForm" action="#" modelAttribute="url" th:action="@{/index}" th:object="${url}" method="post">
+    <input id="url" type="text" value="" th:field="*{longUrl}"/>
+    <td th:if="${#fields.hasErrors('longUrl')}" th:errors="*{longUrl}">Name Error</td>
+    <br>
+    <input id="btn" type="submit" value="Shorten" />
+    <br>
+    <br>
+    <div id="container">
+        <div id="resultsContainer">
+            <div id="longUrlContainer">
+                <label for="longUrl">Following URL: </label><b>
+                <p id="longUrl" th:text="${url.originalUrl}"></p></b>
+            </div>
+            <br>
+            <div id="shortUrlContainer">
+                <label for="shortUrl">resulted short URL</label>
+                <b><p id="shortUrl" th:text="${url.shortUrlLink}"></p></b>
+                <p id="shortUrlLink"><a th:href="${url.shortUrlLink}" onclick="${url.shortUrlLink}" target="_blank">Open short url</a></p>
+            </div>
+        </div>
+    </div>
+</form>
+</body>
+</html>
